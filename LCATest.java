@@ -45,7 +45,15 @@ public class LCATest {
 	@Test
 	public void testTwoNodes(){
 		
-		
+		//test tree structure:
+		//			1
+		//		2
+
+		LCA tree = new LCA();
+		tree.root = new Node(1);
+		tree.root.left = new Node(2);
+
+		assertEquals("Find LCA of tree with only root and one child: ", 1, tree.findLCA(1, 2).data);	
 	}
 	
 	@Test
