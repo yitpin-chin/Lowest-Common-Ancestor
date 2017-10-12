@@ -7,7 +7,8 @@ public class LCATest {
 	@Test
 	public void testNodeConstructor(){
 		
-		
+		Node temp = new Node(1);
+		assertNotNull("Testing Node constructor: ", temp);
 	}
 	
 	@Test
