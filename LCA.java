@@ -23,14 +23,14 @@ import java.util.*;
 		  return list;
 	  }
 	  
-	  public Node_DAG<T> LCA(Node_DAG<T> root, Node_DAG<T> n1, Node_DAG<T> n2){
+	  public Node_DAG<T> LCA_DAG(Node_DAG<T> root, Node_DAG<T> node1, Node_DAG<T> node2){
 		  
-		  List<Node_DAG<T>> list1 = DFS(new ArrayList<>(), new Stack<>(), root, n1);
-		  List<Node_DAG<T>> list2 = DFS(new ArrayList<>(), new Stack<>(), root, n2);
+		  List<Node_DAG<T>> list1 = DFS(new ArrayList<>(), new Stack<>(), root, node1);
+		  List<Node_DAG<T>> list2 = DFS(new ArrayList<>(), new Stack<>(), root, node2);
 		  List<Node_DAG<T>> minList = null;
 		  List<Node_DAG<T>> maxList = null;
 		  
-		  if(root == null || n1 == null || n2 == null){
+		  if(root == null || node1 == null || node2 == null){
 			  
 			  return null;
 		  }
@@ -58,5 +58,8 @@ import java.util.*;
 		  
 	  }
 
-	
+	public Node_DAG<T> LCA(Node_DAG<T> node1, Node_DAG<T> node2){
+		
+		return LCA_DAG(root, node1, node2);
+	}
 }
