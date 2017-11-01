@@ -1,79 +1,35 @@
 import static org.junit.Assert.*;
-
 import org.junit.Test;
+import java.util.ArrayList;
 
 public class LCATest {
 
 	@Test
-	public void testNodeConstructor(){
+	public void testConstructor(){
 		
-		Node temp = new Node(1);
-		assertNotNull("Testing Node constructor: ", temp);
-	}
-	
-	@Test
-	public void testEmptyTree() {
+		/**
+		 * 					1
+		 * 				/		\
+		 * 			2				3
+		 * 		 /	   \		/ 	   \
+		 * 		4		5		6		7
+		 * 
+		 * index:	0 1 2 3 4 5 6
+		 * number:	1 2 3 4 5 6 7
+		 */
 		
-		LCA tree = new LCA();
-		assertNull("Find LCA when tree is empty: ", tree.findLCA(1, 2));
-		assertEquals("Find LCA when tree is empty: ", null, tree.findLCA(1, 2) );
-	}
-	
-	@Test
-	public void testCommonAncestor(){
+		LCA<Integer> testDAG = new LCA<>();
+		ArrayList<Node_DAG<Integer>> testDAGList = new ArrayList<>();
 		
-		//test tree structure:
-		//		1
-		//	2		3
-		//4   5   6   7
-		LCA tree = new LCA();
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-		tree.root.right = new Node(3);
-		tree.root.left.left = new Node(4);
-		tree.root.left.right = new Node(5);
-		tree.root.right.left = new Node(6);
-		tree.root.right.right = new Node(7);
-
-		assertEquals("LCA of 4 and 5: ", 2, tree.findLCA(4, 5).data);
-		assertEquals("LCA of 6 and 7: ", 3, tree.findLCA(6, 7).data);
-		assertEquals("LCA of 2 and 3: ", 1, tree.findLCA(2, 3).data);
-		assertEquals("LCA of 4 and 7: ", 1, tree.findLCA(4, 7).data);
-
-	}
-	
-	@Test
-	public void testTwoNodes(){
+		for(int i=0; i<7; i++){
+			
+			testDAGList.add(new Node_DAG<Integer>(i));
+		}
 		
-		//test tree structure:
-		//			1
-		//		2
-
-		LCA tree = new LCA();
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-
-		assertEquals("Find LCA of tree with only root and one child: ", 1, tree.findLCA(1, 2).data);	
-	}
-	
-	@Test
-	public void testForNonExistentNodes(){
-	
-		//test tree structure:
-		//		1
-		//	2		3
-		//4   5   6   7
-		LCA tree = new LCA();
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-		tree.root.right = new Node(3);
-		tree.root.left.left = new Node(4);
-		tree.root.left.right = new Node(5);
-		tree.root.right.left = new Node(6);
-		tree.root.right.right = new Node(7);
+		testDAG.root = testDAGList.get(0); //add root = 1
 		
-		assertEquals("Find ancestors of non-existent nodes in populated tree: ", null, tree.findLCA(8, 9));
-		assertEquals("Find ancestors of non-existent nodes in populated tree: ", null, tree.findLCA(45, 93));
+		assertNotNull("Testing DAG not null after adding root:", testDAG);
+		 
 	}
 	
 }
